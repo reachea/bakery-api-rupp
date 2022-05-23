@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Public
+Route::get('/products', function (Request $request) {
+    return 'product';
+});
+
+// Protected
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::get('/users', function (Request $request) {
+        return $request->user();
+    });
 });
