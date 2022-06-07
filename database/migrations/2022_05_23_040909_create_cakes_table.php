@@ -18,7 +18,7 @@ class CreateCakesTable extends Migration
             $table->string('name');
             $table->string('thumbnail');
             $table->string('description');
-            $table->integer('price');
+            $table->string('price');
             $table->integer('bakery_shop_id');
             $table->integer('cake_category_id');
             $table->timestamps();
