@@ -64,8 +64,8 @@ class CakeController extends Controller
             'thumbnail' => isset($fields['thumbnail']) ? $fields['thumbnail'] : '',
             'description' => isset($fields['description']) ? $fields['description'] : '',
             'price' => isset($fields['price']) ? $fields['price'] : '',
-            'bakery_shop_id' => isset($fields['bakery_shop_id']) ? $fields['bakery_shop_id'] : '',
-            'cake_category_id' => isset($fields['cake_category_id']) ? $fields['cake_category_id'] : '',
+            'bakery_shop_id' => isset($fields['bakery_shop_id']) ? $fields['bakery_shop_id'] : 0,
+            'cake_category_id' => isset($fields['cake_category_id']) ? $fields['cake_category_id'] : 0,
         ]);
 
         $response = [
@@ -111,7 +111,7 @@ class CakeController extends Controller
         ]);
 
         $response = [
-            'cakeId' => $newCake
+            'cakeId' => $cake -> id
         ];
 
         return response($response, 201);

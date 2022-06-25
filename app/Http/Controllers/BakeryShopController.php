@@ -66,13 +66,13 @@ class BakeryShopController extends Controller
             'thumbnail' => isset($fields['thumbnail']) ? $fields['thumbnail'] : '',
             'description' => isset($fields['description']) ? $fields['description'] : '',
             'phone_number' => isset($fields['phone_number']) ? $fields['phone_number'] : '',
-            'provinces_id' => isset($fields['provinces_id']) ? $fields['provinces_id'] : '',
-            'districts_id' => isset($fields['districts_id']) ? $fields['districts_id'] : '',
-            'communes_id' => isset($fields['communes_id']) ? $fields['communes_id'] : '',
-            'villages_id' => isset($fields['villages_id']) ? $fields['villages_id'] : '',
+            'provinces_id' => isset($fields['provinces_id']) ? $fields['provinces_id'] : 0,
+            'districts_id' => isset($fields['districts_id']) ? $fields['districts_id'] : 0,
+            'communes_id' => isset($fields['communes_id']) ? $fields['communes_id'] : 0,
+            'villages_id' => isset($fields['villages_id']) ? $fields['villages_id'] : 0,
         ]);
 
-        $response = [
+        $response = [   
             'bakeryShop' => $bakeryShop
         ];
 
@@ -119,7 +119,7 @@ class BakeryShopController extends Controller
         ]);
 
         $response = [
-            'bakeryShopId' => $newBakeryShop
+            'bakeryShopId' => $bakeryShop -> id
         ];
 
         return response($response, 201);

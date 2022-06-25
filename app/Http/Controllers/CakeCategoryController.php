@@ -81,7 +81,7 @@ class CakeCategoryController extends Controller
             ], 401);
         }
 
-        $cakeCategory = Cake::find((int) $id);
+        $cakeCategory = CakeCategory::find((int) $id);
 
         if (!$cakeCategory) {
             return response([
@@ -89,13 +89,13 @@ class CakeCategoryController extends Controller
             ], 401);
         }
 
-        $newCakeCategory = Cake::where('id', (int) $id) -> update([
+        $newCakeCategory = CakeCategory::where('id', (int) $id) -> update([
             'name' => isset($fields['name']) ? $fields['name'] : $cakeCategory -> name,
             'description' => isset($fields['description']) ? $fields['description'] : $cakeCategory -> description,
         ]);
 
         $response = [
-            'cakeCategoryId' => $newCakeCategory
+            'cakeCategoryId' => $cakeCategory -> id
         ];
 
         return response($response, 201);

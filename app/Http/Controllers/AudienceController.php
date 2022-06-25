@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Audience;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class AudienceController extends Controller
 {
     //
     public function register(Request $request) {
@@ -18,7 +18,7 @@ class AuthController extends Controller
         ]);
         
         
-        $user = User::create([
+        $user = Audience::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password'])
@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         $token = $user->createToken('bakery-wtc') -> plainTextToken;
 
-        User::where('id', $user -> id) -> update([
+        Audience::where('id', $user -> id) -> update([
             "remember_token" => $token
         ]);
 
@@ -44,7 +44,7 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        $user = User::where(['email' => $fields['email']]) -> first();
+        $user = Audience::where(['email' => $fields['email']]) -> first();
 
         if (!$user || !Hash::check($fields['password'], $user -> password)) {
             return response([
@@ -54,7 +54,7 @@ class AuthController extends Controller
 
         $token = $user -> createToken('bakery-wtc') -> plainTextToken;
 
-        User::where('id', $user -> id) -> update([
+        Audience::where('id', $user -> id) -> update([
             "remember_token" => $token
         ]);
 
@@ -77,7 +77,7 @@ class AuthController extends Controller
     public function me(Request $request) {
         $fields = $request -> remember_token;
 
-        $user = User::where('remember_token', $fields) -> first();
+        $user = Audience::where('remember_token', $fields) -> first();
 
         return response($user, 201);
     }
