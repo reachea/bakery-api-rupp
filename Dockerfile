@@ -1,4 +1,4 @@
-ARG PHP_VERSION=php:8.0-fpm
+ARG PHP_VERSION=php:8.0
 FROM php:${PHP_VERSION}-fpm-alpine AS php-system-setup
 
 # Install system dependencies
