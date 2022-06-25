@@ -9,8 +9,33 @@ use Illuminate\Http\Response;
 class CakeController extends Controller
 {
     //
-    public function cakeList() {
-        $cakeList = Cake::all();
+    public function cakeList(Request $request) {
+        $fields = $request -> validate([
+            'bakery_shop_id' => 'integer',
+            'cake_category_id' => 'integer',
+        ]);
+
+        $cakeList;
+
+        if (isset($fields['bakery_shop_id']) && isset($fields['cake_category_id'])) {
+            $cakeList = Cake::where([
+                ['bakery_shop_id', '=', $fields['bakery_shop_id']],
+                ['cake_category_id', '=',$fields['cake_category_id']]
+            ]);
+        }
+        else if (isset($fields['bakery_shop_ids'])) {
+            $cakeList = Cake::where([
+                ['bakery_shop_id', '=', $fields['bakery_shop_id']],
+            ]);
+        }
+        else if (isset($fields['cake_category_id'])) {
+            $cakeList = Cake::where([
+                ['cake_category_id', '=',$fields['cake_category_id']]
+            ]);
+        } 
+        else {
+            $cakeList = Cake::all();
+        }
 
         if (!count($cakeList) > 0) {
             return response([
