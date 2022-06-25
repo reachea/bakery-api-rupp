@@ -93,4 +93,4 @@ COPY ./entrypoint.sh /
 
 # ENTRYPOINT ["sh", "/entrypoint.sh"]
 
-CMD [ "php", "artisan", 'serve' ]
+CMD [ "php artisan", 'serve' ]
